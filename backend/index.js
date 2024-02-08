@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken')
 
 PORT = process.env.PORT
 app.get('/' , (req, res) =>{
-    res.send(` ishladi`)
+    res.send(` ishladi   urra`)
 })
 
 
