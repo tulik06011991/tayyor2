@@ -5,7 +5,7 @@ const Login = () => {
     <>
       <div className="container">
         <div className="row">
-          <div className="col-sm-10 col-md-6 col-lg-4 mx-auto">
+          <div className="col-sm-10 col-md-6 col-lg-4 mt-5 mx-auto">
             <form>
               
               <div class="mb-3">
