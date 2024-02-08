@@ -7,7 +7,9 @@ const jwt = require('jsonwebtoken')
 
 
 PORT = process.env.PORT
-app.get('/' , (req, res) =>{})
+app.get('/' , (req, res) =>{
+    res.send(` ishladi`)
+})
 
 
 app.listen(PORT, console.log(`server running on port ${PORT}`))
