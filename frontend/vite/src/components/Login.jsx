@@ -5,7 +5,7 @@ const Login = () => {
     <>
       <div className="container">
         <div className="row">
-          <div className="col-sm-10 col-md-6 col-lg-4">
+          <div className="col-sm-10 col-md-6 col-lg-4 mx-auto">
             <form>
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Username</label>

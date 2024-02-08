@@ -20,10 +20,10 @@ const Navbar = () => {
       </ul>
     </div>
   </div>
-  <span>
-          <Link  to="/">Features</Link>
+  <span style={{margin: '10px 20px', borderRadius: "8px"}}>
+          <Link style={{border: "1px solid blue", margin: '10px 20px', padding: '3px 15px'}} to="/register">Register</Link>
     
-          <Link  style={{margin: '10px 20px'}} to="/">Pricing</Link>
+          <Link  style={{border: "1px solid blue", margin: '10px 20px', padding: '3px 15px'}} to="/login">Login</Link>
   </span>
 </nav>
 
