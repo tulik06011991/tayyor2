@@ -6,6 +6,10 @@ const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 
 
+mongoose.connect(process.env.MONGO_URL)
+.then(() =>console.log(`connected  to database`))
+.catch((error) =>console.log(error))
+
 PORT = process.env.PORT
 app.get('/' , (req, res) =>{
     res.send(` ishladi   urra`)
