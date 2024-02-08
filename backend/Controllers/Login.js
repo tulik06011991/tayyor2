@@ -12,7 +12,7 @@ const login = async (req, res) => {
 
         const existingUser = await Model.findOne({ email: req.body.email });
         if (!existingUser) {
-            return res.status(400).json({ message: "Login yoki parol xato" });
+            return res.status(400).json({ message: "Login yoki parol xatop" });
         }
 
         const passwordMatch = await bcrypt.compare(req.body.password, existingUser.password);
