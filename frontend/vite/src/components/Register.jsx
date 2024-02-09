@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 
 const Register = () => {
@@ -7,7 +8,15 @@ const Register = () => {
 
   const handleSubmit = (e) =>{
     e.preventDefault()
-    console.log(email)
+    try {
+      const response  = axios.post(`http://localhost:5000/auth/register`)
+      setUsername(response.data.username)
+      setEmail(response.data.email)
+      console.log(response)
+      
+    } catch (error) {
+      
+    }
   }
 
   
