@@ -12,9 +12,9 @@ const dashboard = require('./Routes/dashboard')
 
 app.use(cors())
 app.use(express.json())
-app.use("/auth", login())
-app.use("/auth", register())
-app.use('/auth', dashboard())
+app.use("/auth", login)
+app.use("/auth", register)
+app.use('/auth', dashboard)
 
 
 
