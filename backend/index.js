@@ -5,6 +5,7 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const login = require("./Routes/Login")
 const register = require('./Routes/register')
+const dashboard = require('./Routes/dashboard')
 
 
 
@@ -13,6 +14,7 @@ app.use(cors())
 app.use(express.json())
 app.use("/auth", login())
 app.use("/auth", register())
+app.use('/auth', dashboard())
 
 
 
