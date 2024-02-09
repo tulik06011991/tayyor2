@@ -9,9 +9,12 @@ const Register = () => {
   const handleSubmit = (e) =>{
     e.preventDefault()
     try {
-      const response  = axios.post(`http://localhost:5000/auth/register`)
-      setUsername(response.data.username)
-      setEmail(response.data.email)
+      const response  = axios.post(`http://localhost:5000/auth/register`,{
+        username,
+        email,
+        password
+      })
+      
       console.log(response)
       
     } catch (error) {
