@@ -19,7 +19,7 @@ const Register = () => {
         password
       })
       if(response.data.status === 200){
-        toast.success(`muvaffaqiyatli kirdingiz`)
+        
         navigate('/login')
       }
       
