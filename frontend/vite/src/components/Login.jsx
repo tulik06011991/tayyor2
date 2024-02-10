@@ -2,6 +2,15 @@ import React, { useState } from 'react'
 import axios from 'axios'
 
 const Login = () => {
+  const [email, setEmail] = useState('')
+  const [password , setPassword] = useState('')
+
+  const handleLogin = async (e) =>{
+    e.preventDefault()
+    const response = await axios.post(`http://localhost:5000/auth/login`, {email, password})
+    .then((response) =>console.log(response.data))
+    .catch((error) =>console.log(error))
+  }
 
   
   return (
@@ -9,7 +18,7 @@ const Login = () => {
       <div className="container">
         <div className="row">
           <div className="col-sm-10 col-md-6 col-lg-4 mt-5 mx-auto">
-            <form>
+            <form onSubmit={handleLogin}>
               
               <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Email</label>
