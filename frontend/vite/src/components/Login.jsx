@@ -15,9 +15,9 @@ const Login = () => {
       await axios.post(`http://localhost:5000/auth/login`, { email, password });
       navigate('/main');
     } catch (error) {
-      if (error.response.status === 400) {
+      if (error.response && error.response.status === 400) {
         toast.error(`Login yoki parol xato`);
-      } else if (error.response.status === 401) {
+      } else if (error.response && error.response.status === 401) {
         toast.error(`hamm abo'sh joylarni to'ldiring`);
       }
     }
@@ -25,6 +25,7 @@ const Login = () => {
 
   return (
     <>
+      <ToastContainer />
       <div className="container">
         <div className="row">
           <div className="col-sm-10 col-md-6 col-lg-4 mt-5 mx-auto">
