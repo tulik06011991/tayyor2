@@ -1,10 +1,11 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
-
+  const navigate = useNavigate()
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -19,6 +20,7 @@ const Register = () => {
       })
       if(response.data.status === 200){
         toast.success(`muvaffaqiyatli kirdingiz`)
+        navigate('/login')
       }
       
       console.log(response)
