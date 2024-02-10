@@ -13,11 +13,7 @@ const Login = () => {
     e.preventDefault();
     try {
       await axios.post(`http://localhost:5000/auth/login`, { email, password });
-      if (response.data.status === 200) {
-        toast.success(`saytga ulandingiz`)
-        navigate('/main');
-        
-      }
+      navigate('/main');
     } catch (error) {
       if (error.response && error.response.status === 400) {
         toast.error(`Login yoki parol xato`);
