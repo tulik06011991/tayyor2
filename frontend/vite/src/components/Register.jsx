@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -19,7 +20,7 @@ const Register = () => {
       });
       if (response.data.status === 200) {
         // Redirect to login page
-        window.location.href = '/login'; // Or you can use React Router's Link component
+        window.location.to = '/login'; // Or you can use React Router's Link component
       }
     } catch (error) {
       if (error.response.status === 400) {
