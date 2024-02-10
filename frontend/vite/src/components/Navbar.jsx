@@ -13,9 +13,7 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse justify-content-between" id="navbarNav">
           <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/main">Main</Link>
-            </li>
+            
           </ul>
           <ul className="navbar-nav">
             <li className="nav-item">

@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
+  const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password , setPassword] = useState('')
 
   const handleLogin = async (e) =>{
     e.preventDefault()
     await axios.post(`http://localhost:5000/auth/login`, {email, password})
-    .then((response) =>console.log(response.data))
+    .then((response) =>{
+      navigate('/main')
+    })
     .catch((error) =>console.log(error))
   }
 
