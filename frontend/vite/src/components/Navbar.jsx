@@ -22,7 +22,7 @@ const Navbar = () => {
                 <button>
                 <Link className="nav-link" to="/logout">Logout</Link>
 
-                Logout</button>
+                Logouto</button>
               </li>
             ) : (
               <>
