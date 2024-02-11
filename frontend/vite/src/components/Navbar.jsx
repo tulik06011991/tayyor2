@@ -1,10 +1,25 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { userContext } from '../App';
+import axios from 'axios';
 
 const Navbar = () => {
   const user = useContext(userContext);
+  const navigate= useNavigate()
   
+const handleLogout = () =>{
+  axios.post(`http://localhost:5000/logout`)
+  .then(() =>{
+    navigate('/login')
+
+  }).catch((error) =>{
+    console.log (error)
+  })
+}
+
+
+
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -19,7 +34,7 @@ const Navbar = () => {
             <ul className="navbar-nav">
               {user ? (
                 <li className="nav-item">
-                  <button className="nav-link" onClick={() => { /* Logout funksiyasini chaqiring */ }}>Logout</button>
+                  <button className="nav-link" onClick={() => {handleLogout}}>Logout</button>
                 </li>
               ) : (
                 <>
