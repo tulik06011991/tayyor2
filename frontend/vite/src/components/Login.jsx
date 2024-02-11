@@ -12,8 +12,9 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:5000/auth/login`, { email, password });
-      navigate('/main');
+      const response = await axios.post(`http://localhost:5000/auth/login`, { email, password });
+      console.log(response); // Yanıtı konsola yazdır
+      navigate('/dashboard');
     } catch (error) {
       if (error.response && error.response.status === 400) {
         toast.error(`Login yoki parol xato`);
