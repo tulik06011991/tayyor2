@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 
 
 const dashboard = (req, res) =>{
-    res.status(200).json({username: req.username, email: req.email})
+    res.status(200).json({ email: req.body.email})
 }
 
 module.exports = dashboard

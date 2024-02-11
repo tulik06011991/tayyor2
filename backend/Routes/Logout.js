@@ -1,23 +1,18 @@
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
+const authMiddleware = require('../middleWare/middleware');
+const user = require('../Model/UserModel');
 
-
-
-
-
-// Express.js da "logout" endpointini yaratish
-router.post('/logout', async (req, res) => {
+// Tokenni o'chirish endpoint'i
+router.delete('/logout', authMiddleware, async (req, res) => {
     try {
-      // Foydalanuvchi ma'lumotlarini tozalash
-      req.user.tokens = [];
-      await req.user.save();
-  
-      res.send({ message: 'Foydalanuvchi muvaffaqiyatli chiqdi' });
+        req.user.tokens = []; // Foydalanuvchi to'kensini tozalash
+        await req.user.save(); // Ma'lumotlar bazasiga saqlash
+        res.send('Logged out successfully');
     } catch (error) {
-      res.status(500).send({ error: 'Server xatosi' });
+        res.status(500).send(error);
     }
-  });
+});
 
+module.exports = router;
 
-  module.exports  = router
-  

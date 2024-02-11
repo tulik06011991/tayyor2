@@ -1,24 +1,21 @@
 import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { userContext } from '../App';
 import axios from 'axios';
 
 const Navbar = () => {
   const user = useContext(userContext);
-  const navigate= useNavigate()
   
-const handleLogout = () =>{
-  axios.post(`http://localhost:5000/logout`)
-  .then(() =>{
-    window.location.href = '/login'
-
-  }).catch((error) =>{
-    console.log (error)
-  })
-}
-
-
-
+  const handleLogout = () => {
+    axios.delete(`http://localhost:5000/logout`)
+      .then(() => {
+        // Foydalanuvchi uchun loyihaga qaytish
+        window.location.href = '/login';
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   return (
     <div>
@@ -32,9 +29,14 @@ const handleLogout = () =>{
           </button>
           <div className="navbar-nav" id="navbarNav">
             <ul className="navbar-nav">
+              
               {user ? (
                 <li className="nav-item">
-                  <button className="nav-link" onClick={() => {handleLogout}}>Logout</button>
+                  
+
+                  {/* onClick prop orqali handleLogout ni chaqirish */}
+                  <button className="nav-link" onClick={handleLogout} >Logout</button>
+                  
                 </li>
               ) : (
                 <>
