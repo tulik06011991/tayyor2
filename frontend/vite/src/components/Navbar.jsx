@@ -10,7 +10,7 @@ const Navbar = () => {
 const handleLogout = () =>{
   axios.post(`http://localhost:5000/logout`)
   .then(() =>{
-    navigate('/login')
+    window.location.href = '/login'
 
   }).catch((error) =>{
     console.log (error)
