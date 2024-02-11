@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 const login = require("./Routes/Login")
 const register = require('./Routes/register')
 const dashboard = require('./Routes/dashboard')
+const logout = require('./Routes/Logout')
 
 
 
@@ -15,6 +16,7 @@ app.use(express.json())
 app.use("/auth", login)
 app.use("/auth", register)
 app.use('/auth', dashboard)
+app.use('/auth', logout)
 
 
 
