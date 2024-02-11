@@ -21,14 +21,14 @@ const Navbar = () => {
                 <Link className="nav-link" to="/logout">Logout</Link>
               </li>
             ) : (
-              <>
+              <span>
                 <li className="nav-item">
                   <Link className="nav-link" to="/register">Register</Link>
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link" to="/login">Login</Link>
                 </li>
-              </>
+              </span>
             )}
           </ul>
         </div>
