@@ -19,12 +19,12 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/dashboard')
-        // {
-        //   // headers: {
-        //   //   Authorization: `Bearer ${localStorage.getItem('token')}`,
-        //   // },
-        // });
+        const response = await axios.get('http://localhost:5000/dashboard',
+        {
+           headers: {
+             Authorization: `Bearer ${localStorage.getItem('token')}`,
+           },
+        });
         setUserData(response.data);
       } catch (error) {
         console.error('Foydalanuvchi ma\'lumotlarini olishda xato:', error);
