@@ -13,7 +13,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(`http://localhost:5000/auth/login`, { email, password });
-      console.log(response); // Yanıtı konsola yazdır
+      console.log(response); // Print the response to the console
       navigate('/dashboard');
     } catch (error) {
       if (error.response && error.response.status === 400) {
@@ -30,17 +30,6 @@ const Login = () => {
       <div className="container">
         <div className="row">
           <div className="col-sm-10 col-md-6 col-lg-4 mt-5 mx-auto">
-<<<<<<< HEAD
-            <form>
-              
-              <div class="mb-3">
-                <label htmlFor="exampleInputPassword1" class="form-label">Email</label>
-                <input type="email" class="form-control" id="exampleInputPassword1"/>
-              </div>
-              <div class="mb-3">
-                <label htmlFor="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1"/>
-=======
             <form onSubmit={handleLogin}>
               <div className="mb-3">
                 <label htmlFor="email" className="form-label">Email</label>
@@ -49,7 +38,6 @@ const Login = () => {
               <div className="mb-3">
                 <label htmlFor="password" className="form-label">Password</label>
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control" id="password" />
->>>>>>> 7ded62e2efa270d7d691b2028362fdee58bd830c
               </div>
               <button type="submit" className="btn btn-primary">Submit</button>
             </form>
