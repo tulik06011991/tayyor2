@@ -1,33 +1,58 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { userContext } from '../App';
+import axios from 'axios';
 
 const Navbar = () => {
+  const user = useContext(userContext);
+  
+  const handleLogout = () => {
+    axios.delete(`http://localhost:5000/logout`)
+      .then(() => {
+        // Foydalanuvchi uchun loyihaga qaytish
+        window.location.href = '/login';
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
-      <div className="container-fluid">
-        <div className="navbar-header">
-          <Link className="navbar-brand" to="/">Menu</Link>
+    <div>
+      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <div className="container-fluid">
+          <div className="navbar-header collapse navbar-collapse justify-content-between">
+            <Link className="navbar-brand" to="/">Menu</Link>
+          </div>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="navbar-nav" id="navbarNav">
+            <ul className="navbar-nav">
+              
+              {user ? (
+                <li className="nav-item">
+                  
+
+                  {/* onClick prop orqali handleLogout ni chaqirish */}
+                  <button className="nav-link" onClick={handleLogout} >Logout</button>
+                  
+                </li>
+              ) : (
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/register">Register</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/login">Login</Link>
+                  </li>
+                </>
+              )}
+            </ul>
+          </div>
         </div>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse justify-content-between" id="navbarNav">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/main">Main</Link>
-            </li>
-          </ul>
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link className="nav-link" to="/register">Register</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/login">Login</Link>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 }
 
