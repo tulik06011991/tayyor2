@@ -1,53 +1,51 @@
-import React, { useEffect, useState } from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap/dist/js/bootstrap.bundle'
-import './App.css'
-import  { Routes , Route, useNavigate } from 'react-router-dom'
-import Navbar from './components/Navbar'
-import Login from './components/Login'
-import Register from './components/Register'
+// App.js
+import React, { useEffect, useState, createContext } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle';
+import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Login from './components/Login';
+import Register from './components/Register';
+import Dashboard from './components/Dashboard';
+import Menu from './components/Menu';
+import axios from 'axios';
 
-import Dashboard from './components/Dashboard'
-import Menu from './components/Menu'
-import axios from 'axios'
-import { createContext } from 'react'
-
-export const userContext = createContext()
+export const userContext = createContext();
 
 const App = () => {
-  const navigate= useNavigate()
-  const [user, setUser] = useState([]) // user'ning qiymati null bo'lishi
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:5000')
-      .then((response) => {
-        setUser(response)
-        console.log(user)
-      })
-      .catch((error) => {
-        if(error){
-         console.log(error)
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/dashboard', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        });
+        setUserData(response.data);
+      } catch (error) {
+        console.error('Foydalanuvchi ma\'lumotlarini olishda xato:', error);
+      }
+    };
 
-        }
-      })
-  }, []) // useEffect faqat bir marta ishga tushishi kerak, [] orqali
-
- // user o'zgarishi bo'lganda useEffect ishga tushishi kerak
+    fetchData();
+  }, []);
 
   return (
-    <>
-      <userContext.Provider value={user}>
+    <userContext.Provider value={userData}>
+      <>
         <Navbar />
         <Routes>
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-          
-          <Route path='/dashboard' element={<Dashboard />} />
-          <Route path='/' element={<Menu />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/" element={<Menu />} />
         </Routes>
-      </userContext.Provider>
-    </>
-  )
-}
+      </>
+    </userContext.Provider>
+  );
+};
 
-export default App
+export default App;

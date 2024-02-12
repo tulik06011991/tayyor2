@@ -1,3 +1,4 @@
+// Navbar.js
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { userContext } from '../App';
@@ -7,10 +8,10 @@ const Navbar = () => {
   const user = useContext(userContext);
   
   const handleLogout = () => {
-    axios.delete(`http://localhost:5000/logout`)
+    axios.post(`http://localhost:5000/auth/logout`)
       .then(() => {
-        // Foydalanuvchi uchun loyihaga qaytish
-        window.location.href = '/login';
+        localStorage.clear();
+        window.location.href = '/';
       })
       .catch((error) => {
         console.log(error);
@@ -29,14 +30,9 @@ const Navbar = () => {
           </button>
           <div className="navbar-nav" id="navbarNav">
             <ul className="navbar-nav">
-              
               {user ? (
                 <li className="nav-item">
-                  
-
-                  {/* onClick prop orqali handleLogout ni chaqirish */}
-                  <button className="nav-link" onClick={handleLogout} >Logout</button>
-                  
+                  <button className="nav-link" onClick={handleLogout}>Logout</button>
                 </li>
               ) : (
                 <>
