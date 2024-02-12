@@ -1,9 +1,13 @@
+// login.js
+
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const Model = require('../Model/UserModel');
 
-const register = async (req, res) => {
+const router = express.Router();
+
+router.post('/register', async (req, res) => {
     try {
         const isExists = Object.values(req.body).some(item => !item);
         if (isExists) {
@@ -28,6 +32,6 @@ const register = async (req, res) => {
         console.error('Registration error:', error);
         return res.status(500).json('Internal server error');
     }
-};
+});
 
-module.exports = register;
+module.exports = router;

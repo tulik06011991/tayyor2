@@ -1,4 +1,3 @@
-
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const Model = require('../Model/UserModel');
@@ -22,6 +21,13 @@ const login = async (req, res) => {
 
         const payload = { _id: existingUser.id, username: existingUser.username };
         const token = jwt.sign(payload, process.env.SECRET_KEY);
+
+        // Set token as a cookie
+        res.cookie('token', token, {
+            httpOnly: true,
+            // secure: true, // Uncomment this line in production (for HTTPS)
+            // sameSite: 'None', // Uncomment this line in production (for cross-site requests)
+        });
 
         const { password, ...others } = existingUser._doc;
         return res.status(200).json({ token, ...others });

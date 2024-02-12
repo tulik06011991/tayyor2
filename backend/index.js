@@ -7,7 +7,6 @@ const login = require("./Routes/Login")
 const register = require('./Routes/register')
 const dashboard = require('./Routes/dashboard')
 
-const verifyToken = require('./middleWare/middleware')
 const logout = require('./Routes/Logout')
 
 
