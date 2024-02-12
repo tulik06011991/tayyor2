@@ -1,11 +1,13 @@
 // Navbar.js
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { userContext } from '../App';
 import axios from 'axios';
 
 const Navbar = () => {
   const user = useContext(userContext);
+  const [data, setData] = useState(user)
+  
   
   const handleLogout = () => {
     axios.post(`http://localhost:5000/auth/logout`)
@@ -42,6 +44,7 @@ const Navbar = () => {
                   <li className="nav-item">
                     <Link className="nav-link" to="/login">Login</Link>
                   </li>
+                  
                 </>
               )}
             </ul>
