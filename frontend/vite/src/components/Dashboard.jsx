@@ -1,61 +1,65 @@
-import React, { useState } from 'react'
-import axios from 'axios'
+import React, { useState } from 'react';
+import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 
-
 const Dashboard = () => {
   const [image, setImage] = useState(null);
-  const [title, setTitle] = useState('')
-
-  const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
-    setTitle(e.target.value)
-  };
+  const [title, setTitle] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const formData = new FormData();
     formData.append('image', image);
     formData.append('title', title);
-
-    try {
-      const response = await axios.post('http://localhost:5000/auth/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
+    
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const response = await axios.post('http://localhost:5000/auth/uploading', formData, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        console.log(response.data);
+        console.log(image, title);
+      } catch (error) {
+        console.error(error);
+        // Xatolik bo'lsa to'g'ri ishlashni yo'qotish
+        toast.error('Xatolik yuz berdi! Iltimos, qayta urinib ko\'ring.');
+      }
+    } else {
+      // Agar token mavjud emas bo'lsa foydalanuvchini avtorizatsiyadan o'tkazish
+      navigate('/login');
     }
   };
 
   return (
     <div>
-      <div className="conteiner">
+      <div className="container">
         <div className="row">
           <div className="col-4 mx-auto mt-5">
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="mb-3">
-                <label htmlFor="exampleInputEmail1" className="form-label">Rasm yuklang</label>
-                <input  type="file" onChange={handleImageChange} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-                  <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+                <label htmlFor="imageUpload" className="form-label">Rasm yuklang</label>
+                <input type="file" onChange={(e) => setImage(e.target.files[0])} className="form-control" id="imageUpload" aria-describedby="imageHelp" />
+                <div id="imageHelp" className="form-text">Iltimos, faqatgina rasm turi fayllarni yuklang.</div>
               </div>
               <div className="mb-3">
-                <label htmlFor="exampleInputPassword1" className="form-label">Izoh yozing</label>
-                <input  type="text" onChange={handleImageChange} className="form-control" id="exampleInputPassword1"/>
+                <label htmlFor="titleInput" className="form-label">Sarlavha</label>
+                <input type="text" onChange={(e) => setTitle(e.target.value)} className="form-control" id="titleInput" />
               </div>
-              
-              <button type="submit" className="btn btn-primary">Submit</button>
+              <button type="submit" className="btn btn-primary">Yuborish</button>
             </form>
           </div>
         </div>
       </div>
-
+      <ToastContainer />
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
