@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,7 +8,13 @@ const Dashboard = () => {
   const [image, setImage] = useState(null);
   const [title, setTitle] = useState('');
   const navigate = useNavigate();
+  
+  useEffect(() =>{
+    handleSubmit()
 
+  },[])
+
+   
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -24,18 +30,22 @@ const Dashboard = () => {
             Authorization: `Bearer ${token}`
           }
         });
+        if(response.data.status===200){
+          toast.success(`muvaffaqiyatli saqlandi`)
+        }
         console.log(response.data);
         console.log(image, title);
       } catch (error) {
         console.error(error);
         // Xatolik bo'lsa to'g'ri ishlashni yo'qotish
-        toast.error('Xatolik yuz berdi! Iltimos, qayta urinib ko\'ring.');
+        toast.error('Xatolik yuz berdi! Iltimos, qayta urinib ko\'ring yoki bo"sh joy qoldirmang.');
       }
     } else {
       // Agar token mavjud emas bo'lsa foydalanuvchini avtorizatsiyadan o'tkazish
       navigate('/login');
     }
   };
+
 
   return (
     <div>

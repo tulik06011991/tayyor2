@@ -6,8 +6,10 @@ const multer = require('multer');
 const uploadMiddleware = require('../middleWare/ImagesMulter'); // uploadMiddleware nomli middleware yaratganingizdan ishlating
  // uploadMiddleware nomli middleware yaratganingizdan ishlating
 const ProductModel = require('../Model/ProductModel');
+const path = require('path')
 
-router.post('/uploading', uploadMiddleware.single('image'), async (req, res) => {
+
+router.post('/uploading',  uploadMiddleware.single('image'), async (req, res) => {
   try {
     // Agar fayl yuborilmasa
     if (!req.file) {
@@ -22,7 +24,7 @@ router.post('/uploading', uploadMiddleware.single('image'), async (req, res) => 
     // Fayl ma'lumotlar bazasiga yuklanadi
     const newProduct = new ProductModel({
       title: req.body.title,
-      imageUrl: req.file.path // Faylning joylashuvi
+      image: req.file.path // Faylning joylashuvi
     });
 
     // Ma'lumotlar saqlanadi
