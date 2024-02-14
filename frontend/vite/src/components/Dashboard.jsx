@@ -9,15 +9,11 @@ const Dashboard = () => {
   const [title, setTitle] = useState('');
   const navigate = useNavigate();
   
-  useEffect(() =>{
-    handleSubmit()
-
-  },[])
-
-   
+  
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     const formData = new FormData();
     formData.append('image', image);
     formData.append('title', title);
@@ -45,8 +41,12 @@ const Dashboard = () => {
       navigate('/login');
     }
   };
+  useEffect(() =>{
+    handleSubmit()
 
-
+  },[])
+  
+  
   return (
     <div>
       <div className="container">
