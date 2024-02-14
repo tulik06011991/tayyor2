@@ -3,10 +3,11 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const uploadinMiddle = require('../middleWare/ImagesMulter'); // uploadMiddleware nomli middleware yaratganingizdan ishlating
+const uploadMiddleware = require('../middleWare/ImagesMulter'); // uploadMiddleware nomli middleware yaratganingizdan ishlating
+ // uploadMiddleware nomli middleware yaratganingizdan ishlating
 const ProductModel = require('../Model/ProductModel');
 
-router.post('/uploading', uploadinMiddle.single('image'), async (req, res) => {
+router.post('/uploading', uploadMiddleware.single('image'), async (req, res) => {
   try {
     // Agar fayl yuborilmasa
     if (!req.file) {
