@@ -19,7 +19,7 @@ const Login = () => {
       navigate('/dashboard');
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        toast.error(`Login yoki parol xato`);
+        toast.error(`Bu foydalanuvchi avval ro'yxatdan o'tgan`);
       } else if (error.response && error.response.status === 401) {
         toast.error(`hamm abo'sh joylarni to'ldiring`);
       }
