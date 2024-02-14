@@ -18,7 +18,11 @@ const Register = () => {
       console.log(response)
       
     } catch (error) {
-      console.log(error)
+      if (error.response && error.response.status === 400) {
+        toast.error(`Login yoki parol xato`);
+      } else if (error.response && error.response.status === 401) {
+        toast.error(`hamma bo'sh joylarni to'ldiring`);
+      }
     }
   }
 
