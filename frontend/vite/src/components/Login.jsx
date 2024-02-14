@@ -13,7 +13,9 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(`http://localhost:5000/auth/login`, { email, password });
-      console.log(response); // Print the response to the console
+      console.log(response);
+      const {token}  = response.data
+      localStorage.setItem('token', token)// Print the response to the console
       navigate('/dashboard');
     } catch (error) {
       if (error.response && error.response.status === 400) {
