@@ -37,7 +37,7 @@ const Product = () => {
             <div className="wrapper">
                 {Data.map((item) => (
                     <div className="card mt-5" key={item._id}>
-                        <img src={`http://localhost:5000/Images/image_${item.image}`} className="card-img-top"  />
+                        <img src={`http://localhost:5000/Images/${item.image}`} className="card-img-top"  />
                         <div className="card-body">
                             <h5 className="card-title">{item.title}</h5>
                             <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
