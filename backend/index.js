@@ -10,6 +10,7 @@ const dashboard = require('./Routes/dashboard')
 const logout = require('./Routes/Logout')
 const products = require('./Routes/Products')
 const verifyMiddleware = require('./middleWare/middleware');
+const path = require('path');
 
 
 
@@ -20,11 +21,11 @@ app.use(cors())
 app.use(express.json())
 app.use("/auth", login)
 app.use("/auth", register)
+app.use(express.static(path.join(__dirname, 'public')));
 app.use('/auth', verifyMiddleware, dashboard);
 app.use("/auth", logout)
 app.use('/auth', verifyMiddleware, uploading)
 app.use('/auth', products)
-app.use(express.static('public'))
 
 
 
