@@ -22,3 +22,11 @@ body{
 .product{
   text-align: center;
 }
+
+
+.Update{
+  width: 50%;
+  max-width: 80%;
+  margin: auto;
+  
+}

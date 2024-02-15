@@ -5,7 +5,7 @@ import '../App.css'
 
 const Product = () => {
     const {id} = useParams()
-    const [data, setData] = useState([])
+    const [Data, setData] = useState([])
     
 
     const token = localStorage.getItem('token');
@@ -17,6 +17,7 @@ const Product = () => {
                 }
             });
             setData(response.data);
+            console.log(response.data)
             
         } catch (error) {
             console.log(error);
@@ -42,18 +43,18 @@ const Product = () => {
 
                     </div>
                 <div className="wrapper">
-                    {data.map((item ) =>(
+                    {Data.map((item ) =>(
 
-                <div key={item.id} className="card mt-5" style={{ width: '18rem' }}>
+                <div key={item._id} className="card mt-5" style={{ width: '18rem' }}>
                     
-                    <img src={`http://localhost:5000/images`} className="card-img-top" alt="..." />
+                    <img src={`http://localhost:5000/images/${item.image}`} className="card-img-top" alt="..." />
                     <div className="card-body">
-                        <h5 className="card-title">{item.id}</h5>
+                        <h5 className="card-title">{item._id}</h5>
                         <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <div className='d-flex justify-content-between'>
 
-                        <Link to={`update/${item.id}`} className="btn btn-primary px-1">O'zgartirish</Link>
-                        <Link to={`delete/${item.id}`} className="btn btn-primary ms-3 px-3">O'chirish</Link>
+                        <Link to={`/update/:${item.id}`} className="btn btn-primary px-1">O'zgartirish</Link>
+                        <Link to={`/delete/:${item.id}`} className="btn btn-primary ms-3 px-3">O'chirish</Link>
                         </div>
                     </div>
                 </div>
