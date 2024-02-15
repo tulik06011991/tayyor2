@@ -30,7 +30,8 @@ const Product = () => {
         if (token) {
             handleGet();
         }
-    }, []); // Agar token o'zgarishi emasdan kechirilsa, handleGet funksiyasini faqat bir marta ishga tushirish uchun bo'sh massiv berilgan
+    }, []);
+     // Agar token o'zgarishi emasdan kechirilsa, handleGet funksiyasini faqat bir marta ishga tushirish uchun bo'sh massiv berilgan
     
 
     
@@ -45,9 +46,9 @@ const Product = () => {
                 <div className="wrapper">
                     {Data.map((item ) =>(
 
-                <div key={item._id} className="card mt-5" style={{ width: '18rem' }}>
+                <div key={item._id} className="card mt-5" >
                     
-                    <img src={`http://localhost:5000/images/${item.image}`} className="card-img-top" alt="..." />
+                    <img src={`http://localhost:5000/images/pexels-efrem-efre-20072361.jpg`} className="card-img-top" alt={item.title} />
                     <div className="card-body">
                         <h5 className="card-title">{item._id}</h5>
                         <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
