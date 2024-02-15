@@ -16,7 +16,7 @@ const Login = () => {
       console.log(response);
       const {token}  = response.data
       localStorage.setItem('token', token)// Print the response to the console
-      navigate('/dashboard');
+      navigate('/product');
     } catch (error) {
       if (error.response && error.response.status === 400) {
         toast.error(`Bu foydalanuvchi avval ro'yxatdan o'tgan`);

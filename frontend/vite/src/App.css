@@ -10,3 +10,15 @@ body{
   width: 80%;
   margin: auto;
 }
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 90%;
+  margin: auto;; /* Oraliqni o'zgartiring kerak bo'lsa */
+}
+
+.product{
+  text-align: center;
+}

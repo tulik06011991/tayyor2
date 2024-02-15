@@ -32,9 +32,15 @@ const Navbar = () => {
           <div className="navbar-nav" id="navbarNav">
             <ul className="navbar-nav">
               {User ? (
+                <>
                 <li className="nav-item">
                   <button className="nav-link" onClick={handleLogout}>Logout</button>
                 </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/dashboard">Create</Link>
+                  </li>
+                </>
+                
               ) : (
                 <>
                   <li className="nav-item">
