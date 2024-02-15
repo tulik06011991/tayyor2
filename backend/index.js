@@ -19,9 +19,9 @@ const path = require('path');
 
 app.use(cors())
 app.use(express.json())
+app.use(express.static('public'));
 app.use("/auth", login)
 app.use("/auth", register)
-app.use(express.static(path.join(__dirname, 'public')));
 app.use('/auth', verifyMiddleware, dashboard);
 app.use("/auth", logout)
 app.use('/auth', verifyMiddleware, uploading)
