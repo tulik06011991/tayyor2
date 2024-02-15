@@ -8,6 +8,7 @@ const register = require('./Routes/register')
 const uploading = require('./Routes/UploadingRoutes')
 const dashboard = require('./Routes/dashboard')
 const logout = require('./Routes/Logout')
+const products = require('./Routes/Products')
 const verifyMiddleware = require('./middleWare/middleware');
 
 
@@ -22,6 +23,7 @@ app.use("/auth", register)
 app.use('/auth', verifyMiddleware, dashboard);
 app.use("/auth", logout)
 app.use('/auth', verifyMiddleware, uploading)
+app.use('/products', products)
 app.use(express.static('public'))
 
 
