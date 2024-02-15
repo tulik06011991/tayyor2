@@ -4,14 +4,15 @@ const mongoose = require('mongoose');
 
 
 const products = async (req, res) =>{
-
-// Ma'lumotlarni olish funksiyasi
-
   try {
-    const data = await ProductModel.find();
-    res.status(200).json(data);
+    const data = await ProductModel.find()
+    if(!data){
+        return res.status(400).json(`malumot topilmadi`)
+        
+    }
+   return res.status(200).json(data);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 
 

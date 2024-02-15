@@ -21,20 +21,16 @@ const Dashboard = () => {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        await axios.post('http://localhost:5000/auth/uploading', formData, {
+        const response = await axios.post('http://localhost:5000/auth/uploading', formData, {
           headers: {
             Authorization: `Bearer ${token}`
           }
 
           
-        }
-        );
-        if(response.data.status===200){
-          toast.success(`muvaffaqiyatli saqlandi`)
-          navigate('/product')
-        }
+        });
         
         console.log(response.data);
+        navigate('/product')
         console.log(image, title);
       } catch (error) {
         console.error(error);

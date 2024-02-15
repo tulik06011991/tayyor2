@@ -4,18 +4,24 @@ import { Link } from 'react-router-dom'
 
 const Product = () => {
     const [data, setData] = useState([])
+    
 
+    const token = localStorage.getItem('token');
+    if(token){
 
-
-    useEffect( async () =>{
-        await axios.get(`http://loclahost:5000/products`)
+     const handleGet = async () =>{
+        await axios.get(`http://localhost:5000/auth/products`)
         .then((response) =>{
             console.log(response.data)
         }).catch((error) =>{
             console.log(error)
         })
 
-    },[])
+
+     }
+    }
+
+    
     return (
         <><div className="container">
             <div className="row">
