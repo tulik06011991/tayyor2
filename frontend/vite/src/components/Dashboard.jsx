@@ -21,7 +21,7 @@ const Dashboard = () => {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        const response = await axios.post('http://localhost:5000/auth/uploading', formData, {
+        await axios.post('http://localhost:5000/auth/uploading', formData, {
           headers: {
             Authorization: `Bearer ${token}`
           }
