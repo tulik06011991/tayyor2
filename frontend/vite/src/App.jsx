@@ -8,6 +8,7 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Dashboard from './components/Dashboard'
 import Menu from './components/Menu'
+import Product from './components/Product'
 import axios from 'axios'
 import { createContext } from 'react'
 
@@ -46,6 +47,7 @@ const App = () => {
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/product' element={<Product/>}/>
           <Route path='/' element={<Menu />} />
         </Routes>
       </userContext.Provider>
