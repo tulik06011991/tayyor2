@@ -23,7 +23,7 @@ app.use("/auth", register)
 app.use('/auth', verifyMiddleware, dashboard);
 app.use("/auth", logout)
 app.use('/auth', verifyMiddleware, uploading)
-app.use('/products', products)
+app.use('/auth', products)
 app.use(express.static('public'))
 
 
