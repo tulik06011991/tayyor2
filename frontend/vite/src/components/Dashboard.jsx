@@ -28,6 +28,7 @@ const Dashboard = () => {
         });
         if(response.data.status===200){
           toast.success(`muvaffaqiyatli saqlandi`)
+          navigate('/product')
         }
         console.log(response.data);
         console.log(image, title);
