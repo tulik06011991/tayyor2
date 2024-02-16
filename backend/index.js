@@ -8,7 +8,13 @@ const register = require('./Routes/register')
 const uploading = require('./Routes/UploadingRoutes')
 const dashboard = require('./Routes/dashboard')
 const logout = require('./Routes/Logout')
+<<<<<<< HEAD
 const verifyMiddleware = require('./middleWare/middleware');
+=======
+const products = require('./Routes/Products')
+const verifyMiddleware = require('./middleWare/middleware');
+const path = require('path');
+>>>>>>> 1d89cbb8156dbd0afd11ad9e75e92d6f6a9245ad
 
 
 
@@ -17,12 +23,17 @@ const verifyMiddleware = require('./middleWare/middleware');
 
 app.use(cors())
 app.use(express.json())
+app.use(express.static('public'));
 app.use("/auth", login)
 app.use("/auth", register)
 app.use('/auth', verifyMiddleware, dashboard);
 app.use("/auth", logout)
 app.use('/auth', verifyMiddleware, uploading)
+<<<<<<< HEAD
 app.use(express.static('public'))
+=======
+app.use('/auth', products)
+>>>>>>> 1d89cbb8156dbd0afd11ad9e75e92d6f6a9245ad
 
 
 

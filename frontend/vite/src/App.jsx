@@ -8,6 +8,9 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Dashboard from './components/Dashboard'
 import Menu from './components/Menu'
+import Product from './components/Product'
+import Delete from './components/Delete'
+import Update from './components/Update'
 import axios from 'axios'
 import { createContext } from 'react'
 
@@ -46,6 +49,9 @@ const App = () => {
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/product' element={<Product/>}/>
+          <Route path='/update/:id' element={<Update/>}/>
+          <Route path='/delete/:id' element={<Delete/>}/>
           <Route path='/' element={<Menu />} />
         </Routes>
       </userContext.Provider>

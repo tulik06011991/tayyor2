@@ -3,10 +3,20 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
+<<<<<<< HEAD
 const uploadinMiddle = require('../middleWare/ImagesMulter'); // uploadMiddleware nomli middleware yaratganingizdan ishlating
 const ProductModel = require('../Model/ProductModel');
 
 router.post('/uploading', uploadinMiddle.single('image'), async (req, res) => {
+=======
+const uploadMiddleware = require('../middleWare/ImagesMulter'); // uploadMiddleware nomli middleware yaratganingizdan ishlating
+ // uploadMiddleware nomli middleware yaratganingizdan ishlating
+const ProductModel = require('../Model/ProductModel');
+const path = require('path')
+
+
+router.post('/uploading',  uploadMiddleware.single('image'), async (req, res) => {
+>>>>>>> 1d89cbb8156dbd0afd11ad9e75e92d6f6a9245ad
   try {
     // Agar fayl yuborilmasa
     if (!req.file) {
@@ -21,7 +31,11 @@ router.post('/uploading', uploadinMiddle.single('image'), async (req, res) => {
     // Fayl ma'lumotlar bazasiga yuklanadi
     const newProduct = new ProductModel({
       title: req.body.title,
+<<<<<<< HEAD
       imageUrl: req.file.path // Faylning joylashuvi
+=======
+      image: req.file.path // Faylning joylashuvi
+>>>>>>> 1d89cbb8156dbd0afd11ad9e75e92d6f6a9245ad
     });
 
     // Ma'lumotlar saqlanadi

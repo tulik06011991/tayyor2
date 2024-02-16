@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
+=======
+import React, { useEffect, useState } from 'react';
+>>>>>>> 1d89cbb8156dbd0afd11ad9e75e92d6f6a9245ad
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,10 +12,19 @@ const Dashboard = () => {
   const [image, setImage] = useState(null);
   const [title, setTitle] = useState('');
   const navigate = useNavigate();
+<<<<<<< HEAD
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+=======
+  
+  
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+>>>>>>> 1d89cbb8156dbd0afd11ad9e75e92d6f6a9245ad
     const formData = new FormData();
     formData.append('image', image);
     formData.append('title', title);
@@ -23,20 +36,38 @@ const Dashboard = () => {
           headers: {
             Authorization: `Bearer ${token}`
           }
+<<<<<<< HEAD
         });
         console.log(response.data);
+=======
+
+          
+        });
+        
+        console.log(response.data);
+        navigate('/product')
+>>>>>>> 1d89cbb8156dbd0afd11ad9e75e92d6f6a9245ad
         console.log(image, title);
       } catch (error) {
         console.error(error);
         // Xatolik bo'lsa to'g'ri ishlashni yo'qotish
+<<<<<<< HEAD
         toast.error('Xatolik yuz berdi! Iltimos, qayta urinib ko\'ring.');
+=======
+        toast.error('Xatolik yuz berdi! Iltimos, qayta urinib ko\'ring yoki bo"sh joy qoldirmang.');
+>>>>>>> 1d89cbb8156dbd0afd11ad9e75e92d6f6a9245ad
       }
     } else {
       // Agar token mavjud emas bo'lsa foydalanuvchini avtorizatsiyadan o'tkazish
       navigate('/login');
     }
   };
+  useEffect(() =>{
+    handleSubmit()
 
+  },[])
+  
+  
   return (
     <div>
       <div className="container">

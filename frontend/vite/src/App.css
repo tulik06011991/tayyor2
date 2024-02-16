@@ -1,3 +1,32 @@
 body{
   background-color: aqua;
 }
+
+.menu{
+  position: relative;
+  height: 100vh;
+  top: 50%;
+  left: 55%;
+  width: 80%;
+  margin: auto;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 90%;
+  margin: auto;; /* Oraliqni o'zgartiring kerak bo'lsa */
+}
+
+.product{
+  text-align: center;
+}
+
+
+.Update{
+  width: 50%;
+  max-width: 80%;
+  margin: auto;
+  
+}

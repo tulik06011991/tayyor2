@@ -32,9 +32,18 @@ const Navbar = () => {
           <div className="navbar-nav" id="navbarNav">
             <ul className="navbar-nav">
               {User ? (
+<<<<<<< HEAD
+=======
+                <>
+>>>>>>> 1d89cbb8156dbd0afd11ad9e75e92d6f6a9245ad
                 <li className="nav-item">
                   <button className="nav-link" onClick={handleLogout}>Logout</button>
                 </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/dashboard">Create</Link>
+                  </li>
+                </>
+                
               ) : (
                 <>
                   <li className="nav-item">
