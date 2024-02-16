@@ -45,7 +45,7 @@ const Update = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:5000/auth/products/${id}`, formData, {
+      await axios.put(`http://localhost:5000/auth/update/${id}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`
         }

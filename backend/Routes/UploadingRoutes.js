@@ -37,4 +37,79 @@ router.post('/uploading',  uploadMiddleware.single('image'), async (req, res) =>
   }
 });
 
+router.put('/update/:id',  uploadMiddleware.single('image'), async (req, res) => {
+  try {
+    // Agar fayl yuborilmasa
+    if (!req.file) {
+      return res.status(400).json({ message: 'Fayl yuborilmadi' });
+    }
+
+    // Agar rasm yuborilmasa
+    if (!req.body.title) {
+      return res.status(400).json({ message: 'Rasm sarlavhasi yuborilmadi' });
+    }
+    const {id} = req.params
+
+    // Fayl ma'lumotlar bazasiga yuklanadi
+    const newProduct = await ProductModel.findByIdAndUpdate({
+      title: req.body.title,
+      image: req.file.fieldname // Faylning joylashuvi
+    });
+
+    // Ma'lumotlar saqlanadi
+    await newProduct.save();
+
+    res.status(201).json({ message: 'Ma\'lumot muvaffaqiyatli saqlandi', id, product: newProduct });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Serverda xatolik yuz berdi' });
+  }
+});
+
+router.get('/getId/:id', async (req, res) => {
+  try {
+    
+   
+    const {id} = req.params
+
+    // Fayl ma'lumotlar bazasiga yuklanadi
+    const newProduct = await ProductModel.findById(id);
+    if(!newProduct){
+      res.status(400).json(`siz izlagan  ma'lumot topilmadi`)
+    }
+
+    // Ma'lumotlar saqlanadi
+    
+
+    res.status(200).json({ message: 'Ma\'lumot muvaffaqiyatli olindi', id, product: newProduct });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Serverda xatolik yuz berdi' });
+  }
+});
+
+router.delete('/delete/:id',   async (req, res) => {
+  try {
+    
+    
+      const {id} = req.params
+    
+    await ProductModel.findByIdAndDelete(id);
+
+    
+    
+
+    res.status(200).json({ message: 'Ma\'lumot muvaffaqiyatli o`chirildi' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Serverda xatolik yuz berdi' });
+  }
+});
+
+
+
+
+
+
+
 module.exports = router;

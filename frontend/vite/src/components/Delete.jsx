@@ -10,32 +10,30 @@ const Delete = () => {
   const {id} = useParams()
   const navigate= useNavigate()
 
+  
   const Orqaga = () =>{
     navigate('/product')
   }
-
-
+  
+  const token = localStorage.getItem('token');
   
     const handleDelete = async () => {
-        try {
-            const response = await axios.delete(`http://localhost:5000/auth/products/${id}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-            if(response){
-              toast.success(`malumot o'chirildi`)
+        
+           await axios.delete(`http://localhost:5000/auth/delete/${id}`)
+            then((response) =>{
 
-            };
-        } catch (error) {
+              console.log(response, `ochirildi`)
+              navigate('/product')
+                
+              
+    })
+              .catch ((error) => {
             console.log(error);
-        }
+        })
     };
     
 
-    <form onSubmit={handleDelete}>
-    <button type="submit">O'chirish</button>
-  </form>
+    
 
   return (
     <div>
