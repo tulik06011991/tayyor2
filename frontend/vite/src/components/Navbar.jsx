@@ -1,25 +1,24 @@
 // Navbar.js
-import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { userContext } from '../App';
 import axios from 'axios';
 
 const Navbar = () => {
+  const navigate = useNavigate()
   const user = useContext(userContext);
-  const [data, setData] = useState(user)
-  
+  const  User = localStorage.getItem('token')
+  console.log(user)
+
   
   const handleLogout = () => {
-    axios.post(`http://localhost:5000/auth/logout`)
-      .then(() => {
-        localStorage.clear();
-        window.location.href = '/';
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    navigate('/login')
+    localStorage.clear()
+    
   }
-
+  
+  
+  
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -32,7 +31,7 @@ const Navbar = () => {
           </button>
           <div className="navbar-nav" id="navbarNav">
             <ul className="navbar-nav">
-              {user ? (
+              {User ? (
                 <li className="nav-item">
                   <button className="nav-link" onClick={handleLogout}>Logout</button>
                 </li>

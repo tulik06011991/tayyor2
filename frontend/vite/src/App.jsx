@@ -22,20 +22,21 @@ const App = () => {
     if (token) {
       axios.get('http://localhost:5000/auth/dashboard', {
         headers: {
-          Authorization: `Bearer ${token}` // tokenni request headeriga qo'shish
+          Authorization: `Bearer ${token}`
         }
       })
-        .then((response) => {
-          setUser(response.data)
-          console.log(response.data)
-        })
-        .catch((error) => {
-          console.log(error.message)
-        })
+      .then((response) => {
+        setUser(response.data)
+        console.log(response.data)
+        console.log(token) // tokenni request headeriga qo'shish
+      })
+      .catch((error) => {
+        console.log(error.message)
+      })
     } else {
-      console.log(`loginni kiriting`)// agar token mavjud emas bo'lsa, login sahifasiga navigatsiya qilish
+    navigate('/login') // agar token mavjud emas bo'lsa, login sahifasiga navigatsiya qilish
     }
-  }, [navigate]) // navigate o'zgarishlarini eslatish
+  },[]) // navigate o'zgarishlarini eslatish
 
   return (
     <>
