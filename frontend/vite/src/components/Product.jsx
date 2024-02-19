@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Link, useParams } from 'react-router-dom'
 import '../App.css'
 
+
 const Product = () => {
     const { id } = useParams()
     const [Data, setData] = useState([])
@@ -34,20 +35,24 @@ const Product = () => {
                 <h1 className='product'>Products</h1>
                 <hr />
             </div>
-            <div className="wrapper">
-                {Data.map((item) => (
-                    <div className="card mt-5" key={item._id}>
-                        <img src={`http://localhost:5000/${item.image}`} style={{width: '97%', height: '20rem', margin: ' 5px auto'}} className="card-img-top"alt={item.image} />
-                        <div className="card-body">
-                            <h5 className="card-title">{item.title}</h5>
-                            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <div className='d-flex justify-content-between'>
-                                <Link to={`/update/${item._id}`} className="btn btn-primary px-1">O'zgartirish</Link>
-                                <Link to={`/delete/${item._id}`} className="btn btn-primary ms-3 px-3">O'chirish</Link>
+            <div className="container-fluid">
+                <div className="row  row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+                    {Data.map((item) => (
+                        <div className="col" key={item._id}>
+                            <div className="card mb-4">
+                                <img src={`http://localhost:5000/${item.image}`} style={{ width: '100%', height: '18rem', margin: '5px auto' }} className="card-img-top" alt={item.image} />
+                                <div className="card-body">
+                                    <h5 className="card-title">{item.title}</h5>
+                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <div className='d-flex justify-content-between'>
+                                        <Link to={`/update/${item._id}`} className="btn btn-primary px-1">O'zgartirish</Link>
+                                        <Link to={`/delete/${item._id}`}    className="btn btn-primary ms-3 px-3">O'chirish</Link>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         </>
     )

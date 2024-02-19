@@ -12,9 +12,12 @@ const Delete = require('./Routes/UploadingRoutes')
 
 const dashboard = require('./Routes/dashboard')
 const logout = require('./Routes/Logout')
+
+const verifyMiddleware = require('./middleWare/middleware')
 const products = require('./Routes/Products')
-const verifyMiddleware = require('./middleWare/middleware');
+
 const path = require('path');
+
 
 
 
@@ -32,7 +35,11 @@ app.use('/auth', verifyMiddleware, uploading)
 app.use("/auth", verifyMiddleware, update )
 app.use("/auth", verifyMiddleware, getId )
 app.use("/auth", verifyMiddleware, Delete  )
+app.use(express.static('public'))
+
+>
 app.use('/auth', products)
+
 
 
 

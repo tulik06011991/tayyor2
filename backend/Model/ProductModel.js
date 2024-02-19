@@ -19,5 +19,8 @@ const ProductModel = mongoose.Schema({
 
 
 })
+
+
 const ProductUser = mongoose.model('product' , ProductModel)
+
 module.exports = ProductUser

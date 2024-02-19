@@ -6,11 +6,15 @@ const Menu = () => {
     <>
     <div className="container">
       <div className="row">
-        <div className="col-md-8">
-          <h1 className='menu'>
+        <div className="col-12">
+          <div className='tolqin'>
+            <h1 className='menu'>
+
             tolqin
 
-          </h1>
+            </h1>
+
+          </div>
         </div>
       </div>
     </div>

@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
+  const navigate = useNavigate()
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,7 +23,9 @@ const Register = () => {
       
       console.log(response);
       // Ma'lumotlar muvaffaqiyatli yuborildi
-      toast.success('Ro\'yxatga olingan!');
+      toast.success('Ro\'yxatga olindi!');
+      navigate('/login')
+
     } catch (error) {
       // Serverdan kelgan xato
       if (error.response.status === 400) {

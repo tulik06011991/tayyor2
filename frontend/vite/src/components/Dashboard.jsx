@@ -1,19 +1,29 @@
+
+
+
 import React, { useEffect, useState } from 'react';
+
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 
+
+
+
+
+
+
+
+
 const Dashboard = () => {
   const [image, setImage] = useState(null);
   const [title, setTitle] = useState('');
   const navigate = useNavigate();
-  
-  
+
   
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
     const formData = new FormData();
     formData.append('image', image);
     formData.append('title', title);
@@ -26,27 +36,37 @@ const Dashboard = () => {
             Authorization: `Bearer ${token}`
           }
 
-          
         });
-        
+        console.log(formData);
+
+
         console.log(response.data);
         navigate('/product')
-        console.log(image, title);
+
+        
+          
+        
+        
       } catch (error) {
         console.error(error);
         // Xatolik bo'lsa to'g'ri ishlashni yo'qotish
+
         toast.error('Xatolik yuz berdi! Iltimos, qayta urinib ko\'ring yoki bo"sh joy qoldirmang.');
+
       }
     } else {
       // Agar token mavjud emas bo'lsa foydalanuvchini avtorizatsiyadan o'tkazish
       navigate('/login');
     }
   };
+
+
   useEffect(() =>{
     handleSubmit()
 
   },[])
-  
+
+
   
   return (
     <div>

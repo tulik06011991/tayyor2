@@ -24,7 +24,7 @@ router.post('/uploading',  uploadMiddleware.single('image'), async (req, res) =>
     // Fayl ma'lumotlar bazasiga yuklanadi
     const newProduct = new ProductModel({
       title: req.body.title,
-      image: req.file.path // Faylning joylashuvi
+      image: req.file.filename // Faylning joylashuvi
     });
 
     // Ma'lumotlar saqlanadi
@@ -51,13 +51,15 @@ router.put('/update/:id',  uploadMiddleware.single('image'), async (req, res) =>
     const {id} = req.params
 
     // Fayl ma'lumotlar bazasiga yuklanadi
-    const newProduct = await ProductModel.findByIdAndUpdate({
+    const newProduct = ({
       title: req.body.title,
-      image: req.file.fieldname // Faylning joylashuvi
+      image: req.file.path// Faylning joylashuvi
     });
 
+     await ProductModel.findByIdAndUpdate(id, newProduct)
+
     // Ma'lumotlar saqlanadi
-    await newProduct.save();
+    //await newProduct.save();
 
     res.status(201).json({ message: 'Ma\'lumot muvaffaqiyatli saqlandi', id, product: newProduct });
   } catch (error) {
@@ -81,7 +83,7 @@ router.get('/getId/:id', async (req, res) => {
     // Ma'lumotlar saqlanadi
     
 
-    res.status(200).json({ message: 'Ma\'lumot muvaffaqiyatli olindi', id, product: newProduct });
+    res.status(200).json({ message: 'Ma\'lumot muvaffaqiyatli olindi',  newProduct });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Serverda xatolik yuz berdi' });

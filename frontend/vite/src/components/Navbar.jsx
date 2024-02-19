@@ -33,6 +33,7 @@ const Navbar = () => {
             <ul className="navbar-nav">
               {User ? (
                 <>
+
                 <li className="nav-item">
                   <button className="nav-link" onClick={handleLogout}>Logout</button>
                 </li>

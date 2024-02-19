@@ -1,77 +1,95 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import '../App.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Update = () => {
-  const navigate= useNavigate()
-  const [image, setImage] = useState(null);
-  const [title, setTitle] = useState('');
-  const { id } = useParams();
-
-
-  const Orqaga = () =>{
-    navigate('/product')
-  }
-
+  const { id } = useParams()
+  const navigate = useNavigate()
+  const [image, setImage] = useState(null)
+  const [title, setTitle] = useState('')
+  
   useEffect(() => {
-    const token = localStorage.getItem('token');
-
-    const handleGet = async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/auth/products/${id}`, {
+        const token = localStorage.getItem('token');
+        if (token) {
+          const response = await axios.get(`http://localhost:5000/auth/getId/${id}`, {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          });
+          setImage(response.data.newProduct.image)
+          setTitle(response.data.newProduct.title)
+        }
+      } catch (error) {
+        console.log(error);
+        toast.error("Error occurred while fetching data");
+      }
+    };
+
+    fetchData();
+  }, [id]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    try {
+      const formData = new FormData();
+      formData.append('image', image);
+      formData.append('title', title);
+
+      const token = localStorage.getItem('token');
+      if (token) {
+        const response = await axios.put(`http://localhost:5000/auth/update/${id}`, formData, {
           headers: {
             Authorization: `Bearer ${token}`
           }
         });
+        console.log(response.data)
 
-        setImage(response.data.image);
-        setTitle(response.data.title);
-      } catch (error) {
-        console.log(error);
+        toast.success("Data updated successfully");
+        navigate('/product')
       }
-    };
-
-    if (token) {
-      handleGet();
-    }
-  }, [id]);
-
-  const handleUpdate = async (e) => {
-    e.preventDefault();
-    
-    const formData = new FormData();
-    formData.append('image', image);
-    formData.append('title', title);
-
-    try {
-      const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:5000/auth/update/${id}`, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-      alert('Ma\'lumot o\'zgartirildi');
-      navigate('/product')
     } catch (error) {
       console.log(error);
+      toast.error("Error occurred while updating data");
     }
-  };
+  }
+
+  const handleBack = () => {
+    navigate('/product')
+  }
 
   return (
-    <div className='Update'>
-      <form onSubmit={handleUpdate}>
-        <div className="card" style={{width: "18rem"}}>
-          <img src={image} className="card-img-top" alt="..." />
-          <div className="card-body">
-            <input type="file" onChange={(e) => setImage(e.target.files[0])} />
-            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+    <>
+      <div className="container">
+        <div className="row">
+          <div className="col-4">
+            <img src={`http://localhost:5000/images/${image}`} alt="/"  style={{ width: '100%', height: '20rem', margin: '5px auto' }}/>
+          </div>
+          <div className="col-6">
+            <form onSubmit={handleSubmit} encType='multipart/form-data' >
+              <div className="mb-3">
+                <label htmlFor="imageInput" className="form-label">Image</label>
+                <input type="file" name='image' id="imageInput" onChange={(e) => setImage(e.target.files[0])} className="form-control" aria-describedby="imageHelp" />
+                <div id="imageHelp" className="form-text">We'll never share your email with anyone else.</div>
+              </div>
+              <div className="mb-3">
+                <label htmlFor="titleInput" className="form-label">Title</label>
+                <input type="text" value={title} name='title' id="titleInput" onChange={(e) => setTitle(e.target.value)} className="form-control" />
+              </div>
+              <button type="submit" className="btn btn-primary">Submit</button>
+              <button type="button" onClick={handleBack} className="btn btn-primary">Back</button>
+            </form>
           </div>
         </div>
-        <button type="submit">O'zgartirish</button>
-      </form>
-      <span><button onClick={Orqaga}>Orqaga</button></span>
-    </div>
-  );
+      </div>
+      <ToastContainer />
+    </>
+  )
 }
 
 export default Update;
