@@ -67,10 +67,10 @@ const Update = () => {
     <>
       <div className="container">
         <div className="row">
-          <div className="col-4">
-            <img src={`http://localhost:5000/images/${image}`} alt="/"  style={{ width: '100%', height: '20rem', margin: '5px auto' }}/>
+          <div className="col-4 mt-5">
+            <img src={`http://localhost:5000/images/${image}`} alt="/"  style={{ width: '100%', height: '20rem', margin: '5px auto', borderRadius: '10px' }}/>
           </div>
-          <div className="col-6">
+          <div className="col-6 mt-5">
             <form onSubmit={handleSubmit} encType='multipart/form-data' >
               <div className="mb-3">
                 <label htmlFor="imageInput" className="form-label">Image</label>
@@ -81,8 +81,11 @@ const Update = () => {
                 <label htmlFor="titleInput" className="form-label">Title</label>
                 <input type="text" value={title} name='title' id="titleInput" onChange={(e) => setTitle(e.target.value)} className="form-control" />
               </div>
-              <button type="submit" className="btn btn-primary">Submit</button>
-              <button type="button" onClick={handleBack} className="btn btn-primary">Back</button>
+              <div className='d-flex justify-content-between'>
+              <button type="button" onClick={handleBack} className="btn btn-primary mt-5 me-5 px-2">orqaga</button>
+              <button type="submit" className="btn btn-primary mt-5">Saqlash</button>
+
+              </div>
             </form>
           </div>
         </div>

@@ -36,7 +36,7 @@ const Delete = () => {
       setTimeout(() => {
         handleDelete();
         navigate('/product');
-      }, 2500);
+      }, 1500);
       
       // Agar komponent bekor qilingan bo'lsa, timeoutni bekor qilish uchun
      

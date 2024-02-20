@@ -26,6 +26,7 @@ router.post('/uploading',  uploadMiddleware.single('image'), async (req, res) =>
       title: req.body.title,
       image: req.file.filename // Faylning joylashuvi
     });
+    console.log(newProduct)
 
     // Ma'lumotlar saqlanadi
     await newProduct.save();
@@ -53,7 +54,7 @@ router.put('/update/:id',  uploadMiddleware.single('image'), async (req, res) =>
     // Fayl ma'lumotlar bazasiga yuklanadi
     const newProduct = ({
       title: req.body.title,
-      image: req.file.path// Faylning joylashuvi
+      image: req.file.filename// Faylning joylashuvi
     });
 
      await ProductModel.findByIdAndUpdate(id, newProduct)

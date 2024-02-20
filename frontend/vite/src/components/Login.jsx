@@ -19,9 +19,9 @@ const Login = () => {
       navigate('/product');
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        toast.error(`Bu foydalanuvchi avval ro'yxatdan o'tgan`);
+        toast.error(`login yoki parol xato`);
       } else if (error.response && error.response.status === 401) {
-        toast.error(`hamm abo'sh joylarni to'ldiring`);
+        toast.error(`hamma bo'sh joylarni to'ldiring`);
       }
     }
   };
